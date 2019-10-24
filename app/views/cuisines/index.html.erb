@@ -1,0 +1,29 @@
+<div class="container">
+
+    <p id="notice"><%= notice %></p>
+    <div class="page-header">
+    <h3>Listing Cuisines</h3>
+    </div>
+    <table class="table table-striped table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @cuisines.each do |cuisine| %>
+          <tr>
+            <td><%= cuisine.name %></td>
+            <td><%= link_to 'Show', cuisine,class:'btn' %></td>
+            <td><%= link_to 'Edit', edit_cuisine_path(cuisine),class:'btn btn-success' %></td>
+            <td><%= link_to 'Destroy', cuisine, method: :delete,class:'btn btn-danger',data: {confirm: 'Are you sure?'} %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
+    <%= link_to 'New Cuisine', new_cuisine_path,class:'btn btn-info' %>
+</div>

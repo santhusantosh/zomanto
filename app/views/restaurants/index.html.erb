@@ -1,0 +1,48 @@
+<div class="container">
+<div class="page-header">
+<font color="red">
+<p id="notice"><%= notice %></p></font>
+  <font color="#110077">
+    <h2>Listing Restaurants</h2></font>
+</div>
+
+    <%= form_tag restaurants_path, method: :get  do %>
+    Search : <%= text_field_tag :search %> 
+    <%= submit_tag "Submit",class: 'btn ' %>
+    <% end %>
+  
+    <table class="table table-striped table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>City</th>
+          <th>Location</th>
+          <th>Address</th>
+          <th>Cost </th>
+          <th>Delivery facility</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @restaurants.each do |restaurant| %>
+          <tr>
+            <td><%= restaurant.name %></td>
+            <td><%= restaurant.city.name %></td>
+            <td><%= restaurant.location.name %></td>
+            <td><%= restaurant.address %></td>
+            <td><%= restaurant.cost_avg %></td>
+            <td><%= restaurant.delivery_facility %></td>
+            <% if user_signed_in? && current_user.is_admin %>
+            <td><%= link_to 'Show', restaurant,class: 'btn btn-mini' %></td>
+            <% end %>
+            <td><%= link_to 'Edit', edit_restaurant_path(restaurant),class: 'btn btn-mini btn-success' %></td>
+            
+            <td><%= link_to 'Destroy', restaurant, method: :delete,class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <%= link_to 'New Restaurant', new_restaurant_path,class: 'btn btn-info' %>
+
+</div>

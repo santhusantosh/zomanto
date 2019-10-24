@@ -1,0 +1,50 @@
+  <div class="container"> 
+
+    <%= form_for(@restaurant) do |f| %>
+      <% if @restaurant.errors.any? %>
+        <div id="error_explanation">
+          <h5><%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h5>
+
+          <ul>
+          <% @restaurant.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+      <div class="field">
+        <%= f.label :city_id %>
+         <%= f.collection_select :city_id,City.all,:id,:name, prompt: "Select City" %>
+      </div>
+      <div class="field">
+        <%= f.label :location_id %>
+        <%= f.collection_select :location_id,Location.all,:id,:name,prompt:"Select location" %>
+      </div>
+      <div class="field">
+        <%= f.label :address %>
+        <%= f.text_area :address %>
+      </div>
+     
+      <div class="field">
+        <%= f.label :cost_avg %>
+        <%= f.text_field :cost_avg %>
+      </div>
+      
+      <div class="field">
+        <%= f.label :delivery_facility %>
+        <%= f.text_field :delivery_facility %>
+      </div>
+      <div class="field">
+      <%= f.label :cuisines %>
+      <%= f.collection_check_boxes :cuisine_ids,Cuisine.all,:id,:name,cuisine_ids:[] %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  
+</div>

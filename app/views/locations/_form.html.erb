@@ -1,0 +1,26 @@
+<%= form_for(@location) do |f| %>
+  <% if @location.errors.any? %>
+    <div id="error_explanation">
+    <font color="red">
+      <h3><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h3>
+      </font>
+      <ul>
+      <% @location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :city_id %>
+    <%= f.collection_select :city_id,City.all,:id,:name, prompt: "Select City" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

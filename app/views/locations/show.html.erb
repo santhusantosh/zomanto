@@ -1,0 +1,19 @@
+<div class="container">
+
+		<p id="notice"><%= notice %></p>
+<div class="page-header">
+	<h3>Location: <%= @location.name %></h3>
+</div>
+		<p>
+		  <strong>Name:</strong>
+		  <%= @location.name %>
+		</p>
+
+		<p>
+		  <strong>City:</strong>
+		  <%= @location.city_id %>
+		</p>
+
+		<%= link_to 'Edit', edit_location_path(@location),class:'btn btn-info' %> 
+		<%= link_to 'Back', locations_path,class:'btn btn-info' %>
+</div>

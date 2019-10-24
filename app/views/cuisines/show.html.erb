@@ -1,0 +1,13 @@
+<div class="container">
+		<p id="notice"><%= notice %></p>
+<div class="page-header">
+	<h3>Cuisine</h3>
+	</div>
+		<p>
+		  <strong>Name:</strong>
+		  <%= @cuisine.name %>
+		</p>
+
+		<%= link_to 'Edit', edit_cuisine_path(@cuisine),class:'btn btn-info' %> 
+		<%= link_to 'Back', restaurant_path,class:'btn btn-info' %>
+</div>

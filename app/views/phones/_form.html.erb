@@ -1,0 +1,27 @@
+
+    <%= form_for(@phone) do |f| %>
+      <% if @phone.errors.any? %>
+        <div id="error_explanation">
+        <font color="red">
+          <h3><%= pluralize(@phone.errors.count, "error") %> prohibited this phone from being saved:</h3>
+          </font>
+          <ul>
+          <% @phone.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :restaurant_id %>
+        <%= f.collection_select :restaurant_id,Restaurant.all,:id,:name,prompt:"Select Restaurant" %>
+      </div>
+      <div class="field">
+        <%= f.label :phone_number %>
+        <%= f.text_field :phone_number %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>

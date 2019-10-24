@@ -1,0 +1,31 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+    <div class="page-header">
+    <h3>Listing Locations</h3>
+    </div>
+    <table class="table table-striped table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>City</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @locations.each do |location| %>
+          <tr>
+            <td><%= location.name %></td>
+            <td><%= location.city_id %></td>
+            <td><%= link_to 'Show', location,class:'btn' %></td>
+            <td><%= link_to 'Edit', edit_location_path(location),class:'btn btn-success' %></td>
+            <td><%= link_to 'Destroy', location, method: :delete,class:'btn btn-danger', data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    
+
+    <%= link_to 'New Location', new_location_path,class:'btn btn-info' %>
+</div>

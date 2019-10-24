@@ -1,0 +1,30 @@
+<div class="container">    
+  <div class="page-header">
+    <p id="notice"><%= notice %></p>
+
+    <h3>Listing Phones</h3>
+</div>
+    <table class="table table-striped table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>Restaurant ID</th>
+          <th>Phone number</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @phones.each do |phone| %>
+          <tr>
+            <td><%= phone.restaurant_id %></td>
+            <td><%= phone.phone_number %></td>
+            <td><%= link_to 'Show', phone,class: 'btn' %></td>
+            <td><%= link_to 'Edit', edit_phone_path(phone),class: 'btn btn-success' %></td>
+            <td><%= link_to 'Destroy', phone, method: :delete,class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to 'New Phone', new_phone_path,class: 'btn btn-info' %>
+</div>

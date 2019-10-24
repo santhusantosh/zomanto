@@ -1,0 +1,19 @@
+<div class="container">		
+
+		<p id="notice"><%= notice %></p>
+		<div class="page-header">
+		<h3>Restaurant: <%= @phone.restaurant.name %></h3>
+		</div>
+		<p>
+		  <strong>Restaurant ID:</strong>
+		  <%= @phone.restaurant_id %>
+		</p>
+
+		<p>
+		  <strong>Phone number:</strong>
+		  <%= @phone.phone_number %>
+		</p>
+
+		<%= link_to 'Edit', edit_phone_path(@phone),class: 'btn btn-info' %> 
+		<%= link_to 'Back', phones_path,class: 'btn btn-info' %>
+</div>

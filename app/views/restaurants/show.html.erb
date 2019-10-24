@@ -1,0 +1,102 @@
+    
+<div class="container">
+  <div class="page-header">
+<p id="notice"><%= notice %></p>
+  <font color="#110077">
+  <h3>Restaurant:<%= @restaurant.name %></h3></font>
+    </div>
+    <p>
+      <strong>Name:</strong>
+      <%= @restaurant.name %>
+    </p>
+
+    <p>
+      <strong>City:</strong>
+      <%= @restaurant.city.name %>
+    </p>
+
+    <p>
+      <strong>Location:</strong>
+      <%=  @restaurant.location.name %>
+    </p>
+
+    <p>
+      <strong>Address:</strong>
+      <%= @restaurant.address %>
+    </p>
+
+    <p>
+      <strong>Cost avg:</strong>
+      <%= @restaurant.cost_avg %>
+    </p>
+
+    <p>
+      <strong>Delivery facility:</strong>
+      <%= @restaurant.delivery_facility %>
+    </p>
+
+    <p>
+      <strong>Phone Number:</strong>
+      <%  @restaurant.phones.each do |ph| %>
+      <%= ph.phone_number %>
+      <% end %>
+      
+    </p>
+    <h3>Selected Cuisines</h3>
+<ol>
+  <% @restaurant.cuisines.each do |cuisine| %>
+  <li><%= link_to  cuisine.name,cuisine_path(cuisine.id) %></li>
+  <% end %>
+</ol>
+  
+
+<h3>Reviews : (<%= @restaurant.reviews.length %>)</h3>
+    <ol>
+    <% @restaurant.reviews.each do |review| %>
+
+      
+      <li>
+        <%= review.user.email %> rated <%= "*" * review.rating %> <br/>
+        <%= review.title %>- <%= review.body %> on <%= review.created_at %><br/>
+
+        <% if user_signed_in? && current_user.is_admin?%>
+        <% if review.user_id == current_user.id %>
+        <%= link_to "delete",review,class:'btn btn-mini btn-danger' %>
+        <% end %>
+      </li>
+      <% end %>
+    <% end %>
+    </ol>
+
+
+
+    <% if user_signed_in? %>
+     <h3>Add Review</h3>
+     <%= form_for @review do |f| %>
+
+     <%= f.label :rating %>
+     <%= f.radio_button :rating, 1 %>1
+     <%= f.radio_button :rating, 2 %>2
+     <%= f.radio_button :rating, 3 %>3
+     <%= f.radio_button :rating, 4 %>4
+     <%= f.radio_button :rating, 5 %>5<br/>
+
+     <%= f.label :title %>
+     <%= f.text_field :title %><br/>
+
+     <%= f.label :body %>
+     <%= f.text_area :body %><br/>
+
+     <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
+
+
+     <%= f.submit %>
+     <% end %>
+
+    <% end %>
+     
+    
+    <%= link_to 'Edit', edit_restaurant_path(@restaurant),class: 'btn btn-info' %> 
+    <%= link_to 'Back', restaurants_path,class: 'btn btn-info' %> 
+
+</div>
